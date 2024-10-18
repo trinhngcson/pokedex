@@ -1,6 +1,6 @@
-import React from "react";
 import { first151Pokemon, getFullPokedexNumber } from "../utils";
-const SideNav = () => {
+const SideNav = (props) => {
+  const { selectedPokemon, setSelectedPokemon } = props;
   return (
     <nav>
       <div className={"header"}>
@@ -9,7 +9,13 @@ const SideNav = () => {
       <input type="text" />
       {first151Pokemon.map((pokemon, pokemonIndex) => {
         return (
-          <button key={pokemonIndex} className="nav-card">
+          <button
+            key={pokemonIndex}
+            className={
+              "nav-card" +
+              (pokemonIndex === selectedPokemon ? "nav-card-selected" : " ")
+            }
+          >
             <p>{getFullPokedexNumber(pokemonIndex)}</p>
             <p>{pokemon}</p>
           </button>
